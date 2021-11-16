@@ -6,36 +6,30 @@
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:52:59 by msierra-          #+#    #+#             */
-/*   Updated: 2021/11/15 18:48:50 by msierra-         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:36:00 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-//TODO: 
-//Controlar si me meten la direccion directamente en el argumento (Hacer un access antes de buscar con el path)
-//Controlar que el infile no sea /dev/random
-//
-
-void	ft_errormsg(void)
+// -1 errno / -2 infile / -3 args
+void	ft_errormsg(int flag)
 {
-	char	*error;
-	int		i;
-
-	i = 0;
-	error = "Error";
-	while(error[i])
+	if (flag == -1)
 	{
-		write(1, &error[i], 1);
-		i++;
+		perror("pipex");
+		exit(errno);
 	}
-	exit(1);
+	else if (flag == -2)
+		ft_putstringerror("Error: Infile not supported");
+	else if (flag == -3)
+		ft_putstringerror("Error: Insufficient number of arguments");
 }
 
 void	ft_badinfile(char *argv)
 {
-	if(ft_strncmp(argv, "/random", ft_strlen(argv)))
+	if (ft_strnstr(argv, "/random", ft_strlen(argv)))
 	{
-		ft_errormsg();
+		ft_errormsg(-2);
 	}
 }

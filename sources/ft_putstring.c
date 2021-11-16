@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parent.c                                        :+:      :+:    :+:   */
+/*   ft_putstring.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 16:52:27 by msierra-          #+#    #+#             */
-/*   Updated: 2021/11/08 15:02:23 by msierra-         ###   ########.fr       */
+/*   Created: 2021/11/16 14:30:48 by msierra-          #+#    #+#             */
+/*   Updated: 2021/11/16 17:52:13 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-// void	ft_createparent(int fd1[2], int fd2[2])
-// {
-// 	int	pid;
+void	ft_putstringerror(char *str)
+{
+	int	i;
 
-// 	close(fd1[WRITE_END]);
-// 	pid = fork();
-// }
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar_fd(str[i], 2);
+		i++;
+	}
+	exit(1);
+}

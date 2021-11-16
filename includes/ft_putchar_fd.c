@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/16 13:09:58 by msierra-          #+#    #+#             */
-/*   Updated: 2021/11/16 18:01:30 by msierra-         ###   ########.fr       */
+/*   Created: 2021/09/17 15:38:50 by msierra-          #+#    #+#             */
+/*   Updated: 2021/11/16 14:24:14 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_putchar_fd(char c, int fd)
 {
-	char	*a;
-	int		size1;
-	int		size2;
-
-	size1 = ft_strlen(s1);
-	size2 = ft_strlen(s2);
-	if (!s1 || !s2)
-		return (NULL);
-	a = malloc((size1 + size2 + 1) * sizeof(char));
-	if (!a)
-		return (NULL);
-	ft_memcpy(a, s1, size1);
-	ft_memcpy(a + size1, s2, size2);
-	a[size1 + size2] = '\0';
-	return (a);
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
 }

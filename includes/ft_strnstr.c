@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msierra- <msierra-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/16 13:09:58 by msierra-          #+#    #+#             */
-/*   Updated: 2021/11/16 18:01:30 by msierra-         ###   ########.fr       */
+/*   Created: 2021/09/15 12:34:47 by msierra-          #+#    #+#             */
+/*   Updated: 2021/11/16 13:51:28 by msierra-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	char	*a;
-	int		size1;
-	int		size2;
+	size_t	i;
+	size_t	j;
 
-	size1 = ft_strlen(s1);
-	size2 = ft_strlen(s2);
-	if (!s1 || !s2)
+	i = 0;
+	j = 0;
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	if (!*haystack || len == 0)
 		return (NULL);
-	a = malloc((size1 + size2 + 1) * sizeof(char));
-	if (!a)
-		return (NULL);
-	ft_memcpy(a, s1, size1);
-	ft_memcpy(a + size1, s2, size2);
-	a[size1 + size2] = '\0';
-	return (a);
+	while (haystack[i] && i < len)
+	{
+		j = 0;
+		while (needle[j] && needle[j] == haystack[i + j] && i + j < len)
+			j++;
+		if (needle[j] == '\0')
+			return ((char *)(haystack + i));
+		i++;
+	}
+	return (NULL);
 }
