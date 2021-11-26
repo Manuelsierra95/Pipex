@@ -21,7 +21,7 @@ void	ft_execmd(char	*argv, t_pipex *pipex)
 	path = ft_checkaccess(pipex);
 	flag = execve(path, pipex->cmd, pipex->env);
 	ft_errormsg(flag);
-	free(flag);
+	free(path);
 }
 
 void	ft_createchildren(t_pipex *pipex, char *argv)
