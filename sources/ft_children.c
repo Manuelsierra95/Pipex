@@ -21,6 +21,7 @@ void	ft_execmd(char	*argv, t_pipex *pipex)
 	path = ft_checkaccess(pipex);
 	flag = execve(path, pipex->cmd, pipex->env);
 	ft_errormsg(flag);
+	free(flag);
 }
 
 void	ft_createchildren(t_pipex *pipex, char *argv)
@@ -78,5 +79,6 @@ void	ft_exepipes(int argc, char **argv, t_pipex *pipex)
 		ft_openfd(pipex);
 		dup2(pipex->fd[F_OUT], STDOUT_FILENO);
 		ft_execmd(argv[i], pipex);
+		close(pipex->fd[F_OUT]);
 	}
 }
